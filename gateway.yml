@@ -20,6 +20,20 @@ spring:
         - Path=/v3/api-docs/**   
         filters:
         - RewritePath=/v3/api-docs/(?<path>.*), /$\{path}/v3/api-docs  
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins: "*"
+            allowedMethods:
+            - GET     
+            - POST
+            - PUT
+            - DELETE
+            - OPTIONS
+            allowed-headers:
+              - authorization
+              - content-type
+              - xsrf-token
   application:
     name: gateway
   
