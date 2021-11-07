@@ -1,0 +1,23 @@
+eureka:
+  client:
+    service-url:
+      defaultZone: http://admin:nimda@myserver:8082/eureka/
+    register-with-eureka: true        
+  instance:
+    prefer-ip-address: false
+    hostname: myserver
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+
+    
+    
+spring:
+  jpa:
+    show-sql: true      
+  messages:
+    use-code-as-default-message: true
+    
+    
+springdoc:
+  packages-to-scan:
+  - com.cloud.userservice.app.controller
+

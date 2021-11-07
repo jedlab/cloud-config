@@ -1,0 +1,45 @@
+spring:
+  cloud:
+    gateway:
+      routes:
+      - id: user-service
+        uri: lb://USER-SERVICE
+        predicates:
+        - Path=/user/**
+        filters:
+        - RewritePath=/user/(?<path>.*), /$\{path}
+      - id: auth-server
+        uri: lb://AUTH-SERVER
+        predicates:
+        - Path=/auth/**   
+        filters:
+        - RewritePath=/auth/(?<path>.*), /$\{path}
+      - id: openapi
+        uri: http://localhost:${server.port}
+        predicates:
+        - Path=/v3/api-docs/**   
+        filters:
+        - RewritePath=/v3/api-docs/(?<path>.*), /$\{path}/v3/api-docs  
+  application:
+    name: gateway
+  
+      
+eureka:
+  client:
+    service-url:
+      defaultZone: http://admin:nimda@myserver:8082/eureka/
+    register-with-eureka: true        
+  instance:
+    prefer-ip-address: false
+    hostname: myserver
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+    
+
+server:
+  port: 1443
+ 
+gateway:
+  clientId: sherkat55
+  clientSecret: sherkat55
+  resourceId: gateway
+

@@ -1,0 +1,27 @@
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,loggers,metrics
+spring:
+  cloud:
+    config:
+      discovery:
+        enabled: true
+  application:
+    name: cache-service
+  zipkin:
+    service:
+      name: cache-service
+eureka:
+  instance:
+    instance-id: cache-service
+    hostname: myserver
+    prefer-ip-address: false
+  client:
+    service-url:
+      defaultZone: http://admin:nimda@myserver:8082/eureka/
+    register-with-eureka: true
+server:
+  port: 8123
+
