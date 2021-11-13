@@ -65,14 +65,13 @@ resilience4j.circuitbreaker:
     configs:
         default:
             slidingWindowSize: 100
+            slidingWindowType: COUNT_BASED
             permittedNumberOfCallsInHalfOpenState: 10
-            waitDurationInOpenState: 1000
-            failureRateThreshold: 6
-            eventConsumerBufferSize: 10
+            waitDurationInOpenState: 60000
+            failureRateThreshold: 50
             registerHealthIndicator: true
-        someShared:
-            slidingWindowSize: 50
-            permittedNumberOfCallsInHalfOpenState: 10
+            ignoreExceptions:
+                - com.jedlab.framework.exceptions.ServiceException
     instances:
         cloudCircuitBreaker:
             baseConfig: default 
