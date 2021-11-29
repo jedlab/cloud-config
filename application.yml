@@ -1,8 +1,8 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/oauthdb
-    username: oauth
-    password: oauth
+    url: jdbc:postgresql://localhost:5432/clouddb
+    username: cloud
+    password: cloud
   jpa:
     properties:
       hibernate.dialect: org.hibernate.dialect.PostgreSQL95Dialect
